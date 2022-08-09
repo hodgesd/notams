@@ -1,0 +1,981 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+
+<html>
+<HEAD>
+
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="IBM Software Development Platform">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK href="theme/naimes.css" rel="stylesheet" type="text/css">
+<SCRIPT language="JavaScript" src="javascript/common.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="javascript/save.js"></SCRIPT>
+
+<TITLE>Defense Internet NOTAM Service</TITLE>
+<script>
+window.focus();
+</script>
+<script >bazadebezolkohpepadr="734511760"</script><script type="text/javascript" src="https://www.notams.faa.gov/akam/13/2bc7c3c6"  defer></script></HEAD>
+
+
+<BODY>
+
+<A name="top"></A>
+<!-- begin of banner -->
+<TABLE width="100%" cellpadding="0" cellspacing="0" class="noprint" >
+	<TBODY>
+		<TR>
+			<TD align="left" background="images/n_gradiant_back.gif"><IMG	src="images/n_seal_af.gif" width="99" height="104" border="0"></TD>
+			<TD align="left" background="images/n_gradiant_back.gif"><IMG	src="images/n_seal_army.gif" width="99" height="104" border="0"></TD>
+			<TD align="center" background="images/n_gradiant_back.gif"><IMG	src="images/n_logo_dins.gif" width="367" height="104" border="0"></TD>
+			<TD align="center" background="images/n_gradiant_back.gif"><IMG	src="images/n_seal_navy.gif" width="99" height="104" border="0"></TD>
+			<TD align="right" background="images/n_gradiant_back.gif"><IMG src="images/n_seal_marines.gif" width="99" height="104" border="0"></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<TABLE border="0" cellpadding="0" cellspacing="0" bgcolor="white" 
+	width="100%" class="noprint">
+
+
+	<TBODY>
+		<TR bgcolor="black">
+		
+			<TD width="33%" align="left" nowrap >
+			<FONT color="white" size="1">
+			<IMG	border="0" src="images/spacer.gif" width="10" height="11"> 
+			<span	id="DINSClock"></span></FONT></TD>
+
+<td><IMG	border="0" src="images/spacer.gif" width="10" > </td>
+			<TD width="33%"  class="dodWarningRed11" align="center"  bgcolor="black" nowrap>
+						~ For DoD Flight Only ~
+			</TD>
+
+			<TD width="33%"  align="right"  id="MenuTop" nowrap >
+			<FONT	 color="#000000">xxxxxxxxx</FONT> 
+			<A	href="#" class="MenuTop" title="Close" onclick="window.close()"> 
+			<FONT	color="#FFFFFF">Close</FONT></A>
+         <FONT	 color="#000000">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</FONT> 
+		
+		
+				</TD>
+
+	</TBODY>
+</TABLE>
+
+<!-- end of menu line one -->
+<!-- end of banner -->
+<!-- end of menu line one -->
+
+<!-- END LINKS -->
+
+<style media="print">
+#noprint {
+	display: none;
+}
+input, button {
+	display: none;
+}
+.noprint {
+	display: none;
+}
+.toggle {
+	display: block;
+}
+text {
+display: block;
+}
+</style>
+
+<style media="screen">
+#noshow {
+	display: none;
+}
+.noshow {
+	display: none;
+}
+</style>
+
+<form name="NotamRetrievalForm" method="post" action="/dinsQueryWeb/printRetrievalMapAction.do" id="form1">
+
+<input type=hidden name="locidStr"  value="KCPS KHEF"  />
+<input type=hidden name="save"  value="" />	
+
+
+
+
+
+
+<script>
+function submitForm(action) {
+	var oldAction = "printRetrievalMapAction.do";
+	if (action == "saveAsPDF") {
+		document.NotamRetrievalForm.action = 'saveNotamAsPDF?sel=false&geo=false';
+		}
+	else {
+		document.NotamRetrievalForm.action = oldAction;
+	}
+}
+</script>
+
+<DIV align="left">
+			<TABLE width="100%" cellpadding="5">
+				<TR>
+					<TD>
+					<TABLE>
+
+						<TR>
+							<TD><input type="submit" name="submit" value="Display/Print Selected NOTAMs" onclick="this.form.save.value =' '; submitForm();" style="width: 162px; font-size: 10px;"></TD>
+
+						</TR>
+
+						<TR>
+							<TD>
+								<input type="button" name="button" value="Print all NOTAMs" onclick="loadAPDImagesForPrint('print');" style="width: 115px; font-size: 09px;">
+								&nbsp;&nbsp;
+								<!-- <input type="submit" name="button" value="Save all NOTAMs " onclick="this.form.save.value ='saveall';submitForm();" style="width: 115px; font-size: 09px;"> -->
+								<input type="submit" name="button" value="Save all NOTAMs " onclick="submitForm('saveAsPDF');" style="width: 115px; font-size: 09px;">
+							</TD>
+
+
+							<td class="textBlack14" width="25%" align="right" >Sort By: <select name="sortOrder"><!--  onchange="sortNotamListing(this.value); "-->
+								
+								<option value="1" selected="selected">Default Report</option>
+								<option value="2">Effective Date</option>
+								<option value="3">Expiration Date</option>
+								<option value="4">Created Date</option></select>
+							
+							</td>							
+						</TR>
+					<tr>
+					<td class="toggle"> </td>
+					</tr>
+						<TR >
+						<TD ><input style="width: 115px; font-size: 09px;" type="button" onClick="checkedAll('form1', true)" value="Check All NOTAMs">
+							&nbsp;&nbsp;
+							<input style="width: 115px; font-size: 09px;" type="button" onClick="checkedAll('form1', false)" value="UnCheck All NOTAMs">
+						</TD>	
+						<td nowrap="nowrap" class="textBlack14" width="25%" align="right" >
+							Keyword Sort: <input type="text" name="sortKeyword" maxlength="20" size="15" value="" style="display:inline">						
+							<input  type="button" onClick="sortNotamListing(document.NotamRetrievalForm.sortOrder.value,document.NotamRetrievalForm.sortKeyword.value);" value="Go">
+							
+						</td>					
+						</TR>
+
+						
+							
+	
+
+
+						<TR>
+							<TD height="3" class="textRed12" align="center">
+						
+							
+							
+							</TD>
+						</TR>
+
+						<TR>
+							<TD nowrap="nowrap" class="textBlack16Bold">Locations:</TD>							
+						</TR>
+						<TR>
+							<TD WIDTH=800 class="textBlack12Bold">
+
+							  <A HREF='#KCPS' class='A1'>KCPS,</A> &nbsp;  <A HREF='#KHEF' class='A1'>KHEF</A> &nbsp; </TD>
+						</TR>
+						<TR>
+							<TD colspan="2">
+							<HR>
+							</TD>
+						</TR>
+
+						<TR>
+							<TD class="textBlack14"><tt>Data Current as of: &nbsp; <span
+								class="textRed12">Tue, 09 Aug 2022 03:44:00 GMT</span></tt></TD>
+						</TR>
+
+
+					</TABLE>
+					 
+					
+						
+							<TABLE>
+								<TR>
+									<TD colspan="2" width="1070">
+
+									<HR>
+
+									</TD>
+								</TR>
+								<TR>
+
+									<TD nowrap class="textBlack12Bu" width="350" valign="top"><A
+										name="KCPS">
+										 KCPS&nbsp;&nbsp; ST LOUIS DOWNTOWN</TD>
+									
+									
+									<TD ALIGN="right" id="noprint"><A href="#top"><U>[Back to Top]</U></A>
+									<br>
+									</TD>
+									
+								</TR>
+							</TABLE>
+
+							
+
+
+							
+								
+
+									<TABLE>
+
+										
+										
+										
+											<tr>
+												<td colspan="2"><!--  keep until we are sure that the customer perfers links over buttons.
+											<a href="javascript:icaoCheckAll(document.NotamRetrievalForm.KCPS, KCPS)" > Check All KCPS </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<a href="javascript:icaoUnCheckAll(document.NotamRetrievalForm.KCPS, KCPS)" > UnCheck All KCPS </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											</td> --> <input type="button"
+													style="width: 90px; font-size: 09px;" name="CheckAll"
+													value="Check All KCPS"
+													onClick="icaoCheckAll(document.NotamRetrievalForm.KCPS, KCPS ); ">
+												&nbsp; <input type="button"
+													style="width: 100px; font-size: 09px;" name="unCheckAll"
+													value="UnCheck All KCPS"
+													onClick="icaoUnCheckAll(document.NotamRetrievalForm.KCPS, KCPS ); ">
+												
+										
+												</TD>
+											</tr>
+																						
+										
+
+										
+
+
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%08/006%0" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%08/006%0" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/006</b> - OBST TOWER LGT (ASR 1288577) 382808.90N0901733.90W (8.9NM SW CPS) 906.8FT (355.0FT
+AGL) U/S. 08 AUG 14:32 2022 UNTIL 29 AUG 23:59 2022. CREATED: 08 AUG 14:32 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%08/004%1" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%08/004%1" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/004</b> - OBST TOWER LGT (ASR 1003920) 382856.00N0902353.00W (12.6NM WSW CPS) 1649.3FT
+(1073.2FT AGL) U/S. 05 AUG 02:58 2022 UNTIL 24 SEP 23:59 2022. CREATED: 05 AUG
+02:58 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%08/002%2" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%08/002%2" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/002</b> - OBST TOWER LGT (ASR 1025226) 382555.90N0902248.30W (13.5NM SW CPS) 801.2FT (221.1FT
+AGL) U/S. 04 AUG 16:32 2022 UNTIL 03 SEP 16:32 2022. CREATED: 04 AUG 16:32 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%08/001%3" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%08/001%3" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/001</b> - OBST TOWER LGT (ASR UNKNOWN) 384108.02N0901154.27W (6.7NM NNW CPS) UNKNOWN (235FT
+AGL) U/S. 01 AUG 07:54 2022 UNTIL 31 AUG 23:59 2022. CREATED: 01 AUG 07:54 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%07/004%4" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%07/004%4" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>07/004</b> - OBST TOWER LGT (ASR UNKNOWN) 383201.48N0901500.91W (5NM SW CPS) 422.8FT (303.2FT
+AGL) U/S. 04 JUL 10:13 2022 UNTIL 04 SEP 23:59 2022. CREATED: 04 JUL 10:13 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%06/009%5" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%06/009%5" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>06/009</b> (A0328/22) - AD AP WINDCONE FOR RWY 12R SEGMENTED CIRCLE U/S. 07 JUN 13:54 2022 UNTIL 31 DEC
+23:00 2022. CREATED: 07 JUN 13:56 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%03/005%6" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%03/005%6" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>03/005</b> - OBST TOWER LGT (ASR UNKNOWN) 384115.64N0901127.99W (6.9NM NNW CPS) UNKNOWN (262FT
+AGL) U/S. 29 MAR 16:13 2022 UNTIL 31 AUG 23:59 2022. CREATED: 29 MAR 16:13 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%01/012%7" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%01/012%7" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>01/012</b> (A0029/22) - AD AP RDO ALTIMETER UNREL. AUTOLAND, HUD TO TOUCHDOWN, ENHANCED FLT VISION SYSTEMS
+TO TOUCHDOWN, HEL OPS REQUIRING RDO ALTIMETER DATA TO INCLUDE HOVER AUTOPILOT
+MODES AND CAT A/B/PERFORMANCE CLASS TKOF AND LDG NOT AUTHORIZED EXC FOR ACFT
+USING APPROVED ALTERNATIVE METHODS OF COMPLIANCE DUE TO 5G C-BAND INTERFERENCE
+PLUS SEE AIRWORTHINESS DIRECTIVES 2021-23-12, 2021-23-13. 19 JAN 05:01 2022 UNTIL
+19 JAN 05:01 2024. CREATED: 13 JAN 09:55 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%2/5932%8" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%2/5932%8" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/5932</b> (A0422/22) - SID ST LOUIS DOWNTOWN,
+CAHOKIA/ST LOUIS, IL.
+GATEWAY ONE DEPARTURE...
+DEPARTURE PROCEDURE FROM OVER STL VORTAC NA EXCEPT FOR AIRCRAFT
+EQUIPPED WITH SUITABLE RNAV SYSTEM WITH GPS,
+STL VOR OUT OF SERVICE. 09 AUG 12:00 2022 UNTIL 16 AUG 17:58 2022 ESTIMATED.
+CREATED: 08 AUG 17:59 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%2/5919%9" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%2/5919%9" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/5919</b> (A0421/22) - SID ST LOUIS DOWNTOWN,
+CAHOKIA/ST LOUIS, IL.
+LINDBERGH EIGHT DEPARTURE...
+OZARK EIGHT DEPARTURE...
+PLESS FIVE DEPARTURE...
+DEPARTURE PROCEDURE NA EXCEPT FOR AIRCRAFT EQUIPPED WITH SUITABLE
+RNAV SYSTEM WITH GPS,
+STL VOR OUT OF SERVICE. 09 AUG 12:00 2022 UNTIL 16 AUG 17:58 2022 ESTIMATED.
+CREATED: 08 AUG 17:59 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%2/1278%10" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%2/1278%10" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/1278</b> (A0283/22) - SID ST LOUIS DOWNTOWN,
+Cahokia/St Louis, IL.
+PLESS FIVE DEPARTURE...
+NASHVILLE TRANSITION NA EXCEPT FOR AIRCRAFT EQUIPPED WITH SUITABLE
+RNAV SYSTEM WITH GPS,
+BNA VOR OUT OF SERVICE. 09 MAY 18:12 2022 UNTIL 19 DEC 18:12 2022 ESTIMATED.
+CREATED: 09 MAY 18:12 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%1/4384%11" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%1/4384%11" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 1/4384</b> (A0003/22) - IAP ST LOUIS DOWNTOWN,
+CAHOKIA/ST LOUIS, IL.
+ILS OR LOC RWY 30L, AMDT 9D...
+S-ILS 30L DA 661/HAT 250. 06 JUL 13:18 2021 UNTIL 06 JUL 13:16 2023 ESTIMATED.
+CREATED: 06 JUL 13:18 2021
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%1/4382%12" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%1/4382%12" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 1/4382</b> (A0002/22) - IAP ST LOUIS DOWNTOWN,
+CAHOKIA/ST LOUIS, IL.
+RNAV (GPS) RWY 30L, ORIG-D...
+LPV DA NA. 06 JUL 13:10 2021 UNTIL 06 JUL 13:09 2023 ESTIMATED. CREATED: 06
+JUL 13:11 2021
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KCPS%1/8217%13" id="KCPS">
+												<input type=hidden name="saveall" value="KCPS%1/8217%13" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 1/8217</b> (A0004/22) - IAP ST LOUIS DOWNTOWN,
+CAHOKIA/ST LOUIS, IL.
+RNAV (GPS) RWY 12R, ORIG-D...
+FEEDER SEGMENT FROM DELMA TO ZINKI (IAF) MINIMUM ALTITUDE 3000. 07 JUN 12:54
+2021 UNTIL 07 JUN 12:54 2023 ESTIMATED. CREATED: 07 JUN 12:54 2021
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+									</TABLE>
+								
+								
+
+								
+							
+						
+							<TABLE>
+								<TR>
+									<TD colspan="2" width="1070">
+
+									<HR>
+
+									</TD>
+								</TR>
+								<TR>
+
+									<TD nowrap class="textBlack12Bu" width="350" valign="top"><A
+										name="KHEF">
+										 KHEF&nbsp;&nbsp; MANASSAS RGNL/HARRY P DAVIS FLD</TD>
+									
+									
+									<TD ALIGN="right" id="noprint"><A href="#top"><U>[Back to Top]</U></A>
+									<br>
+									</TD>
+									
+								</TR>
+							</TABLE>
+
+							
+
+
+							
+								
+
+									<TABLE>
+
+										
+										
+										
+											<tr>
+												<td colspan="2"><!--  keep until we are sure that the customer perfers links over buttons.
+											<a href="javascript:icaoCheckAll(document.NotamRetrievalForm.KHEF, KHEF)" > Check All KHEF </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<a href="javascript:icaoUnCheckAll(document.NotamRetrievalForm.KHEF, KHEF)" > UnCheck All KHEF </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											</td> --> <input type="button"
+													style="width: 90px; font-size: 09px;" name="CheckAll"
+													value="Check All KHEF"
+													onClick="icaoCheckAll(document.NotamRetrievalForm.KHEF, KHEF ); ">
+												&nbsp; <input type="button"
+													style="width: 100px; font-size: 09px;" name="unCheckAll"
+													value="UnCheck All KHEF"
+													onClick="icaoUnCheckAll(document.NotamRetrievalForm.KHEF, KHEF ); ">
+												
+										
+												</TD>
+											</tr>
+																						
+										
+
+										
+
+
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%08/022%0" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%08/022%0" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/022</b> - OBST CRANE (ASN UNKNOWN) 384639N0773242W (3.76NM N APCH END RWY 16L) 
+UNKNOWN (220FT AGL) FLAGGED AND LGTD. 10 AUG 10:00 2022 UNTIL 01 NOV 23:00 2022.
+CREATED: 08 AUG 19:09 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%08/021%1" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%08/021%1" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/021</b> - OBST CRANE (ASN UNKNOWN) 384403N0773102W (1.6NM N APCH END RWY 16L) 
+UNKNOWN (140FT AGL) FLAGGED AND LGTD. 09 AUG 10:00 2022 UNTIL 09 AUG 22:00 2022.
+CREATED: 08 AUG 18:42 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%08/011%2" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%08/011%2" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/011</b> - OBST TOWER LGT (ASR 1024355) 385203.40N0774942.90W (16.9NM WNW HEF) 950.8FT (315.0FT
+AGL) U/S. 05 AUG 01:05 2022 UNTIL 02 NOV 04:00 2022. CREATED: 05 AUG 01:05 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%07/021%3" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%07/021%3" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>07/021</b> - RWY 16L/34R REDL LOW INTST NOT STD. 25 JUL 17:47 2022 UNTIL 02 SEP 22:00 2022.
+CREATED: 25 JUL 17:51 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%07/020%4" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%07/020%4" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>07/020</b> - OBST CRANE (ASN 2021-AEA-16382-OE) 384415N0773021W (1.1NM NNE HEF) 427FT (215FT
+AGL) FLAGGED. 25 JUL 17:51 2022 UNTIL 26 AUG 22:00 2022. CREATED: 25 JUL 17:51
+2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%07/017%5" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%07/017%5" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>07/017</b> - AD AP WINDCONE FOR RWY 34R U/S. 25 JUL 17:48 2022 UNTIL 30 SEP 22:00 2022. CREATED:
+25 JUL 17:48 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%05/042%6" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%05/042%6" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/042</b> - OBST CRANE (ASN 2022-AEA-48-OE) 384444N0773210W (1.8NM NW HEF) 445FT (198FT AGL)
+FLAGGED AND LGTD. 26 MAY 19:42 2022 UNTIL 01 OCT 23:00 2022. CREATED: 26 MAY
+19:40 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%03/017%7" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%03/017%7" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>03/017</b> - OBST CRANE (ASN 2021-AEA-10589-OE) 384453N0773111W (1.6NM N HEF) 405FT (190FT
+AGL) FLAGGED. 15 MAR 10:00 2022 UNTIL 30 SEP 23:00 2022. CREATED: 14 MAR 15:45
+2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%02/022%8" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%02/022%8" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>02/022</b> - AD AP RDO ALTIMETER UNREL. AUTOLAND, HUD TO TOUCHDOWN, ENHANCED FLT VISION SYSTEMS
+TO TOUCHDOWN, HEL OPS REQUIRING RDO ALTIMETER DATA TO INCLUDE HOVER AUTOPILOT
+MODES AND CAT A/B/PERFORMANCE CLASS TKOF AND LDG NOT AUTHORIZED EXC FOR ACFT
+USING APPROVED ALTERNATIVE METHODS OF COMPLIANCE DUE TO 5G C-BAND INTERFERENCE
+PLUS SEE AIRWORTHINESS DIRECTIVES 2021-23-12, 2021-23-13. 01 MAR 05:01 2022 UNTIL
+01 MAR 05:01 2024. CREATED: 23 FEB 14:41 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%01/046%9" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%01/046%9" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>01/046</b> - AIRSPACE SEE FDC 1/1155, 9/1811, 0/0053, 9/1812,
+0/3929 ZDC SPECIAL SECURITY INSTRUCTIONS. 15 JAN 00:02 2020 UNTIL PERM. CREATED:
+15 JAN 00:10 2020
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%2/8271%10" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%2/8271%10" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/8271</b> - SID MANASSAS RGNL/HARRY P DAVIS FLD,
+WASHINGTON, DC.
+ARSENAL FIVE DEPARTURE...
+TAKEOFF MINIMUMS: RWY 34L, 300-1 5/8 OR STANDARD WITH MINIMUM CLIMB
+OF 302FT PER NM TO 600. RWY 34R, 300-1 5/8 OR STANDARD WITH MINIMUM
+CLIMB OF 293FT PER NM TO 600. 
+TEMPORARY CRANE 445FT MSL 1.35 NM NW OF RWY 16L (2022-AEA-48-OE).
+TEMPORARY CRANE 442FT MSL 1.37 NM NW OF RWY 16R
+(2022-AEA-10138-OE).
+TAKEOFF OBSTACLE NOTES: RWY 34L, TEMPORARY CRANE 1.09NM FROM DER,
+45FT RIGHT OF CENTERLINE, 220FT AGL/436FT MSL (2020-AEA-6724-OE).
+RWY 34R, TEMPORARY CRANE 1.09NM FROM DER, 703FT LEFT OF CENTERLINE,
+220FT AGL/436FT MSL (2020-AEA-6724-OE). 
+ALL OTHER DATA REMAINS AS PUBLISHED. 14 JUN 00:36 2022 UNTIL 17 OCT 00:36 2022
+ESTIMATED. CREATED: 14 JUN 00:37 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%2/8270%11" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%2/8270%11" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/8270</b> - ODP MANASSAS RGNL/HARRY P DAVIS FLD,
+WASHINGTON, DC.
+TAKEOFF MINIMUMS AND (OBSTACLE) DEPARTURE PROCEDURES AMDT 4A...
+TAKEOFF MINIMUMS: RWY 34L, 300-1 5/8 OR STANDARD WITH MINIMUM CLIMB
+OF 302FT PER NM TO 600. RWY 34R, 300-1 5/8 OR STANDARD WITH MINIMUM
+CLIMB OF 293FT PER NM TO 600. 
+TEMPORARY CRANE 445FT MSL 1.35 NM NW OF RWY 16L (2022-AEA-48-OE).
+TEMPORARY CRANE 442FT MSL 1.37 NM NW OF RWY 16R
+(2022-AEA-10138-OE).
+TAKEOFF OBSTACLE NOTES: RWY 34L, TEMPORARY CRANE 1.09NM FROM DER,
+45FT RIGHT OF CENTERLINE, 220FT AGL/436FT MSL (2020-AEA-6724-OE).
+RWY 34R, TEMPORARY CRANE 1.09NM FROM DER, 703FT LEFT OF CENTERLINE,
+220FT AGL/436FT MSL (2020-AEA-6724-OE). ALL OTHER DATA REMAINS AS
+PUBLISHED. 14 JUN 00:36 2022 UNTIL 17 OCT 00:36 2022 ESTIMATED. CREATED: 14
+JUN 00:37 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%2/8269%12" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%2/8269%12" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/8269</b> - IAP MANASSAS RGNL/HARRY P DAVIS FLD,
+WASHINGTON, DC.
+RNAV (GPS) RWY 16R, AMDT 1C...
+LPV DA 767/HAT 581 ALL CATS. VISIBILITY ALL CATS 1 3/4.
+LNAV/VNAV DA 767/HAT 581 ALL CATS. VISIBILITY ALL CATS 1 3/4. 
+LNAV MDA 720/HAT 534 ALL CATS. VISIBILITY CATS C/D 1 1/2. 
+CIRCLING MDA CAT B 780/HAA 588. 
+VDP 1.50 NM TO RW16R. 
+TEMPORARY CRANE 421 MSL 1.03NM NE OF HEF AIRPORT
+(2021-AEA-16381-OE), 
+TEMPORARY CRANE 427 MSL 1.09NM NE OF HEF AIRPORT
+(2021-AEA-16382-OE), 
+TEMPORARY CRANES 405FT MSL 1.05 NM N OF RWY 16L (2021-AEA-11567,
+73, 74, 75, 10589-OE), 
+TEMPORARY CRANE 445FT MSL 1.33 NM NW OF RWY 16R (2022-AEA-48-OE), 
+TEMPORARY CRANE 436 MSL 1.53NM NW HEF AIRPORT (2020-AEA-6724-OE).
+TEMPORARY CRANE 442FT MSL 1.37 NM NW OF RWY 16R
+(2022-AEA-10138-OE). 14 JUN 00:36 2022 UNTIL 17 OCT 00:36 2022 ESTIMATED. CREATED:
+14 JUN 00:37 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%2/8268%13" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%2/8268%13" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/8268</b> - IAP MANASSAS RGNL/HARRY P DAVIS FLD,
+WASHINGTON, DC.
+ILS OR LOC RWY 16L, ORIG-A...
+S-LOC 16L MDA 700/HAT 508 ALL CATS. VISIBILITY CATS A/B 3/4. 
+CIRCLING CATS A/B MDA 780/HAA 588. 
+CHANGE NOTE TO READ: FOR INOP ALS, INCREASE S-LOC 16L VISIBILITY
+CATS A/B TO 1 SM AND CATS C/D VISIBILITY TO 1 3/8 SM. 
+WHEN LOCAL ALTIMETER SETTING NOT RECEIVED, USE DULLES ALTIMETER
+SETTING AND INCREASE S-ILS 16L DA TO 441 FEET; INCREASE ALL MDAS 60
+FEET AND S-LOC 16L VISIBILITY CATS C/D 1/4 SM, AND CIRCLING
+VISIBILITY CAT C/D 1/4 SM. 
+FOR INOP ALS WHEN USING DULLES ALTIMETER SETTING, INCREASE S-LOC
+16L CATS A/B VISIBILITY TO 1 SM AND CATS C/D VISIBILITY TO 1 5/8
+SM. 
+TEMPORARY CRANE 421 MSL 1.03NM NE OF HEF AIRPORT
+(2021-AEA-16381-OE), 
+TEMPORARY CRANE 427 MSL 1.09NM NE OF HEF AIRPORT
+(2021-AEA-16382-OE), 
+TEMPORARY CRANES 405FT MSL 1.05 NM N OF RWY 16L (2021-AEA-11567,
+73, 74, 75, 10589-OE), 
+TEMPORARY CRANE 445FT MSL 1.35 NM NW OF RWY 16L (2022-AEA-48-OE), 
+TEMPORARY CRANE 436 MSL 1.53NM NW HEF AIRPORT (2020-AEA-6724-OE).
+END PART 1 OF 2. 14 JUN 00:36 2022 UNTIL 17 OCT 00:36 2022 ESTIMATED. CREATED:
+14 JUN 00:37 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%2/8268%14" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%2/8268%14" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/8268</b> - IAP MANASSAS RGNL/HARRY P DAVIS FLD,
+WASHINGTON, DC.
+TEMPORARY CRANE 442FT MSL 8390FT NW OF RWY 16L (2022-AEA-10138-OE).
+END PART 2 OF 2. 14 JUN 00:36 2022 UNTIL 17 OCT 00:36 2022 ESTIMATED. CREATED:
+14 JUN 00:37 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KHEF%2/8267%15" id="KHEF">
+												<input type=hidden name="saveall" value="KHEF%2/8267%15" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/8267</b> - IAP MANASSAS RGNL/HARRY P DAVIS FLD,
+WASHINGTON, DC.
+RNAV (GPS) RWY 16L, AMDT 1D...
+LNAV/VNAV DA 765/HAT 573 ALL CATS. VISIBILITY ALL CATS 1 1/4. 
+LNAV MDA 720/HAT 528 ALL CATS. 
+CIRCLING MDA CATS A/B 780/HAA 588. 
+VDP 1.48 NM TO RW16L. 
+CHANGE NOTE TO READ: FOR INOP ALS, INCREASE LNAV/VNAV ALL CATS
+VISIBILITY TO 1 5/8 SM, LNAV VISIBILITY CATS A/B TO 1 SM AND CATS
+C/D TO 1 3/8 SM. TEMPORARY CRANES 405FT MSL 1.05 NM N OF RWY 16L
+(2021-AEA-11567, 73, 74, 75, 10589-OE), 
+TEMPORARY CRANE 421 MSL 1.03NM NE OF HEF AIRPORT
+(2021-AEA-16381-OE), 
+TEMPORARY CRANE 427 MSL 1.09NM NE OF HEF AIRPORT
+(2021-AEA-16382-OE), 
+TEMPORARY CRANE 445FT MSL 1.35 NM NW OF RWY 16L (2022-AEA-48-OE), 
+TEMPORARY CRANE 436 MSL 1.53NM NW HEF AIRPORT (2020-AEA-6724-OE).
+TEMPORARY CRANE 442FT MSL 8390FT NW OF RWY 16L (2022-AEA-10138-OE). 14 JUN 00:36
+2022 UNTIL 17 OCT 00:36 2022 ESTIMATED. CREATED: 14 JUN 00:37 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+									</TABLE>
+								
+								
+
+								
+							
+						
+					 
+
+						<table>
+							<tr>
+								<td height="4">&nbsp;</td>
+							</tr>
+							<TR>
+								<TD class="textRed12"><TT>Number of NOTAMs: 30
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End of Report <br>
+								<br>
+								</TT></TD>
+							</TR>
+						</table>
+					
+					
+				<TR>
+
+					<TD bgcolor="silver"><input type="submit" name="submit" value="Display/Print Selected NOTAMs" onclick="this.form.save.value =' '; submitForm();" style="width: 162px; font-size: 10px;">
+					&nbsp;&nbsp; 
+					
+					<input type="button" name="button" value="Print all NOTAMs" onclick="loadAPDImagesForPrint('print')" style="width: 115px; font-size: 09px;">
+								&nbsp;&nbsp;
+								<!-- <input type="submit" name="button" value="Save all NOTAMs " onclick="this.form.save.value ='saveall'; submitForm();" style="width: 115px; font-size: 09px;"> -->
+								<input type="submit" name="button" value="Save all NOTAMs " onclick="submitForm('saveAsPDF');" style="width: 115px; font-size: 09px;">
+						
+						
+					&nbsp;&nbsp; <input style="width: 115px; font-size: 09px;"
+						type="button" onClick="checkedAll('form1', true)"
+						value="Check All NOTAMs"> &nbsp;&nbsp; <input
+						style="width: 115px; font-size: 09px;" type="button"
+						onClick="checkedAll('form1', false)" value="UnCheck All NOTAMs"></TD>
+				</TR>
+
+			</TABLE>
+</DIV>
+			
+</form>
+
+	
+
+
+
+<!-- START Bottom LINKS -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" bgcolor="#5487C4" class="noprint">
+      <tbody>
+      <tr align="left">
+       
+        <td align="left"><img src="images/spacer.gif" alt="" width="20" height="15"></td>
+        <td height="15" align="left" ><a href="http://www.faa.gov/privacy/" target="_blank" class="MenuBottom" title="Privacy and Website Policy"><font color="#FFFFFF">Privacy and Web site Policy</font></A></td>
+
+        <td align="left">
+<a href="#" class="MenuBottom" title="About Defense Internet NOTAM Service" onClick="aboutWindow=window.open('../about.html','aboutWindow','toolbar=yes,location=no,directories=no,status=no,menubar=yes,scrollbars=yes,resizable=yes,width=550,height=400,left=150,top=50'); return false;"><font color="#FFFFFF">About DINS</font></a></td>
+
+      
+<td align="left">
+<a href="#" class="MenuBottom" title="DINS Disclaimer" onClick="discWindow=window.open('../disclaim.html','discWindow','toolbar=yes,location=no,directories=no,status=no,menubar=yes,scrollbars=yes,resizable=yes,width=550,height=400,left=150,top=50'); return false;"><font color="#FFFFFF">DINS Disclaimer</font></a></td>
+             
+<TD  VALIGN="top"><IMG SRC="images/spacer.gif" ALT="" TITLE="" WIDTH="200" HEIGHT="15"></TD>
+ <TD  VALIGN="top"><IMG SRC="images/spacer.gif" ALT="" TITLE="" WIDTH="100" HEIGHT="15">
+  </TD>       
+          
+      </TR>
+   </tbody>   
+  </TABLE>
+	<!-- END LINKS -->
+	<noscript><img src="https://www.notams.faa.gov/akam/13/pixel_2bc7c3c6?a=dD1lNjc5NGRhNWM0NDU2ZWQ2Yzg5ZDZjMDQ0NDY5ZDJjNzBiMzg2MmQyJmpzPW9mZg==" style="visibility: hidden; position: absolute; left: -999px; top: -999px;" /></noscript></BODY>
+</html>
+

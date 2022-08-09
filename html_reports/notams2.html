@@ -1,0 +1,872 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+
+<html>
+<HEAD>
+
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="IBM Software Development Platform">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK href="theme/naimes.css" rel="stylesheet" type="text/css">
+<SCRIPT language="JavaScript" src="javascript/common.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="javascript/save.js"></SCRIPT>
+
+<TITLE>Defense Internet NOTAM Service</TITLE>
+<script>
+window.focus();
+</script>
+</HEAD>
+
+
+<BODY>
+
+<A name="top"></A>
+<!-- begin of banner -->
+<TABLE width="100%" cellpadding="0" cellspacing="0" class="noprint" >
+	<TBODY>
+		<TR>
+			<TD align="left" background="images/n_gradiant_back.gif"><IMG	src="images/n_seal_af.gif" width="99" height="104" border="0"></TD>
+			<TD align="left" background="images/n_gradiant_back.gif"><IMG	src="images/n_seal_army.gif" width="99" height="104" border="0"></TD>
+			<TD align="center" background="images/n_gradiant_back.gif"><IMG	src="images/n_logo_dins.gif" width="367" height="104" border="0"></TD>
+			<TD align="center" background="images/n_gradiant_back.gif"><IMG	src="images/n_seal_navy.gif" width="99" height="104" border="0"></TD>
+			<TD align="right" background="images/n_gradiant_back.gif"><IMG src="images/n_seal_marines.gif" width="99" height="104" border="0"></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<TABLE border="0" cellpadding="0" cellspacing="0" bgcolor="white" 
+	width="100%" class="noprint">
+
+
+	<TBODY>
+		<TR bgcolor="black">
+		
+			<TD width="33%" align="left" nowrap >
+			<FONT color="white" size="1">
+			<IMG	border="0" src="images/spacer.gif" width="10" height="11"> 
+			<span	id="DINSClock"></span></FONT></TD>
+
+<td><IMG	border="0" src="images/spacer.gif" width="10" > </td>
+			<TD width="33%"  class="dodWarningRed11" align="center"  bgcolor="black" nowrap>
+						~ For DoD Flight Only ~
+			</TD>
+
+			<TD width="33%"  align="right"  id="MenuTop" nowrap >
+			<FONT	 color="#000000">xxxxxxxxx</FONT> 
+			<A	href="#" class="MenuTop" title="Close" onclick="window.close()"> 
+			<FONT	color="#FFFFFF">Close</FONT></A>
+         <FONT	 color="#000000">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</FONT> 
+		
+		
+				</TD>
+
+	</TBODY>
+</TABLE>
+
+<!-- end of menu line one -->
+<!-- end of banner -->
+<!-- end of menu line one -->
+
+<!-- END LINKS -->
+
+<style media="print">
+#noprint {
+	display: none;
+}
+input, button {
+	display: none;
+}
+.noprint {
+	display: none;
+}
+.toggle {
+	display: block;
+}
+text {
+display: block;
+}
+</style>
+
+<style media="screen">
+#noshow {
+	display: none;
+}
+.noshow {
+	display: none;
+}
+</style>
+
+<form name="NotamRetrievalForm" method="post" action="/dinsQueryWeb/printRetrievalMapAction.do" id="form1">
+
+<input type=hidden name="locidStr"  value="KIAB KMCF"  />
+<input type=hidden name="save"  value="" />	
+
+
+
+
+
+
+<script>
+function submitForm(action) {
+	var oldAction = "printRetrievalMapAction.do";
+	if (action == "saveAsPDF") {
+		document.NotamRetrievalForm.action = 'saveNotamAsPDF?sel=false&geo=false';
+		}
+	else {
+		document.NotamRetrievalForm.action = oldAction;
+	}
+}
+</script>
+
+<DIV align="left">
+			<TABLE width="100%" cellpadding="5">
+				<TR>
+					<TD>
+					<TABLE>
+
+						<TR>
+							<TD><input type="submit" name="submit" value="Display/Print Selected NOTAMs" onclick="this.form.save.value =' '; submitForm();" style="width: 162px; font-size: 10px;"></TD>
+
+						</TR>
+
+						<TR>
+							<TD>
+								<input type="button" name="button" value="Print all NOTAMs" onclick="loadAPDImagesForPrint('print');" style="width: 115px; font-size: 09px;">
+								&nbsp;&nbsp;
+								<!-- <input type="submit" name="button" value="Save all NOTAMs " onclick="this.form.save.value ='saveall';submitForm();" style="width: 115px; font-size: 09px;"> -->
+								<input type="submit" name="button" value="Save all NOTAMs " onclick="submitForm('saveAsPDF');" style="width: 115px; font-size: 09px;">
+							</TD>
+
+
+							<td class="textBlack14" width="25%" align="right" >Sort By: <select name="sortOrder"><!--  onchange="sortNotamListing(this.value); "-->
+								
+								<option value="1" selected="selected">Default Report</option>
+								<option value="2">Effective Date</option>
+								<option value="3">Expiration Date</option>
+								<option value="4">Created Date</option></select>
+							
+							</td>							
+						</TR>
+					<tr>
+					<td class="toggle"> </td>
+					</tr>
+						<TR >
+						<TD ><input style="width: 115px; font-size: 09px;" type="button" onClick="checkedAll('form1', true)" value="Check All NOTAMs">
+							&nbsp;&nbsp;
+							<input style="width: 115px; font-size: 09px;" type="button" onClick="checkedAll('form1', false)" value="UnCheck All NOTAMs">
+						</TD>	
+						<td nowrap="nowrap" class="textBlack14" width="25%" align="right" >
+							Keyword Sort: <input type="text" name="sortKeyword" maxlength="20" size="15" value="" style="display:inline">						
+							<input  type="button" onClick="sortNotamListing(document.NotamRetrievalForm.sortOrder.value,document.NotamRetrievalForm.sortKeyword.value);" value="Go">
+							
+						</td>					
+						</TR>
+
+						
+							
+	
+
+
+						<TR>
+							<TD height="3" class="textRed12" align="center">
+						
+							
+							
+							</TD>
+						</TR>
+
+						<TR>
+							<TD nowrap="nowrap" class="textBlack16Bold">Locations:</TD>							
+						</TR>
+						<TR>
+							<TD WIDTH=800 class="textBlack12Bold">
+
+							  <A HREF='#KIAB' class='A1'>KIAB,</A> &nbsp;  <A HREF='#KMCF' class='A1'>KMCF</A> &nbsp; </TD>
+						</TR>
+						<TR>
+							<TD colspan="2">
+							<HR>
+							</TD>
+						</TR>
+
+						<TR>
+							<TD class="textBlack14"><tt>Data Current as of: &nbsp; <span
+								class="textRed12">Sun, 07 Aug 2022 01:46:00 GMT</span></tt></TD>
+						</TR>
+
+
+					</TABLE>
+					 
+					
+						
+							<TABLE>
+								<TR>
+									<TD colspan="2" width="1070">
+
+									<HR>
+
+									</TD>
+								</TR>
+								<TR>
+
+									<TD nowrap class="textBlack12Bu" width="350" valign="top"><A
+										name="KIAB">
+										 KIAB&nbsp;&nbsp; MC CONNELL AFB</TD>
+									
+									
+									<TD ALIGN="right" id="noprint"><A href="#top"><U>[Back to Top]</U></A>
+									<br>
+									</TD>
+									
+								</TR>
+							</TABLE>
+
+							
+
+
+							
+								
+
+									<TABLE>
+
+										
+										
+										
+											<tr>
+												<td colspan="2"><!--  keep until we are sure that the customer perfers links over buttons.
+											<a href="javascript:icaoCheckAll(document.NotamRetrievalForm.KIAB, KIAB)" > Check All KIAB </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<a href="javascript:icaoUnCheckAll(document.NotamRetrievalForm.KIAB, KIAB)" > UnCheck All KIAB </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											</td> --> <input type="button"
+													style="width: 90px; font-size: 09px;" name="CheckAll"
+													value="Check All KIAB"
+													onClick="icaoCheckAll(document.NotamRetrievalForm.KIAB, KIAB ); ">
+												&nbsp; <input type="button"
+													style="width: 100px; font-size: 09px;" name="unCheckAll"
+													value="UnCheck All KIAB"
+													onClick="icaoUnCheckAll(document.NotamRetrievalForm.KIAB, KIAB ); ">
+												
+										
+												</TD>
+											</tr>
+																						
+										
+
+										
+
+
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%M0505/22%0" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%M0505/22%0" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0505/22</b> - AERODROME CLSD EXCEPT TO PRIOR COORDINATED MISSIONS. FOR
+ EMERGENCIES CONTACT COMMAND POST AT DSN 743-3251 OR FREQ 323.8
+ SHOCKER. 06 AUG 00:15 2022 UNTIL 08 AUG 12:00 2022. CREATED: 06 AUG 00:14 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%M0500/22%1" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%M0500/22%1" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0500/22</b> - DUE TO CONSTRUCTION ON 19L/01R THE ILS IS CONSIDERED NOT
+ PROTECTED WHEN WEATHER IS BELOW 800/2. 01 AUG 18:02 2022 UNTIL 03 OCT 23:59
+2022. CREATED: 01 AUG 18:02 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%M0486/22%2" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%M0486/22%2" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0486/22</b> - USE CAUTION: TAXIWAY CHARLIE AND TAXIWAY DELTA EAST OF RWY
+ 01L/19R CLOSED. AIRCRAFT WILL UTILIZE TAXIWAY BRAVO AND TAXIWAY
+ ECHO AS CROSSING POINTS TO ACCESS RWY 01L/19R. 25 JUL 18:52 2022 UNTIL 21 OCT
+23:59 2022. CREATED: 25 JUL 18:52 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%M0478/22%3" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%M0478/22%3" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0478/22</b> - AERODROME CAUTION: CONSTRUCTION VEHICLES WILL BE CROSSING TWY
+ ALPHA TO UTILIZE TWY CHARLIE AND WILL ALSO BE UTILIZING THE SOUTH
+ ACCESS ROAD TO CROSS TWY ECHO ONTO RWY 01R/19L. 20 JUL 13:55 2022 UNTIL 14
+OCT 23:59 2022. CREATED: 20 JUL 13:55 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%M0477/22%4" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%M0477/22%4" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0477/22</b> - AERODROME CAUTION: MEN AND EQUIPMENT ON RWY 01R/19L. LIGHTED X’S
+ AND LOW PROFILE BARRICADES DELINEATE CLOSED/CONSTRUCTION AREAS. 19 JUL 20:45
+2022 UNTIL 14 OCT 23:59 2022. CREATED: 19 JUL 20:45 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%M0472/22%5" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%M0472/22%5" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0472/22</b> - AERODROME OPERATING HOURS REDUCED. DAILY HOURS OF OPERATIONS WILL
+ VARY BASED ON 22 ARW AND SUPPORT MISSIONS. DURING PERIODS OF
+ INACTIVITY THE AIRFIELD WILL BE CLOSED. AIRFIELD OPERATIONS AND ALL
+ TRANSIENT ALERT SUPPORT AGENCIES WILL BE ON TELEPHONE STANDBY.
+ MISSION PLANNERS PLEASE ALLOW 1-HOUR STANDBY RESPONSE TIME TO
+ REOPEN AERODROME AND 1-HOUR STANDBY TO PROVIDE TRANSIENT SERVICES.
+ ONLY PRIOR APPROVED AIRCRAFT OR THOSE SELECTIVELY APPROVED BY THE
+ 22 OG/CC ARE AUTHORIZED TO USE THE AIRFIELD. CONTACT AFLD
+ MANAGEMENT FOR ANY PPR REQUEST AT DSN 743-3701 OR COMM
+ (316)759-3701. 15 JUL 19:22 2022 UNTIL 10 OCT 23:59 2022. CREATED: 15 JUL 19:22
+2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%M0462/22%6" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%M0462/22%6" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0462/22</b> - MAPA CAUTION: ENGINE RUNS PROHIBITED ON NORTH MAPA SPOTS CHARLIE
+ 2 &#150; 5 DUE TO PROXIMITY OF CONSTRUCTION. 08 JUL 18:21 2022 UNTIL 30 SEP
+23:59 2022. CREATED: 08 JUL 18:21 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%M0448/22%7" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%M0448/22%7" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0448/22</b> - RWY 19R CAUTION: FIRST 3000FT OF RWY CENTERLINE MARKINGS OBSCURED
+ DUE TO RUBBER BUILD UP. 29 JUN 18:53 2022 UNTIL 08 SEP 23:59 2022. CREATED:
+29 JUN 18:53 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%M0390/22%8" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%M0390/22%8" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0390/22</b> - NO HAZARDOUS AND INTERNALLY LOADED EXPLOSIVES, 1.1 AND 1.2
+ PARKING AT KIAB. INTERNALLY LOADED 1.3 AND 1.4 AND ALL OTHER
+ HAZARDOUS CARGO CLASSIFICATION CAN BE APPROVED WITH PPR. 25 MAY 18:59 2022
+UNTIL 15 AUG 23:59 2022. CREATED: 25 MAY 18:57 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%M0383/22%9" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%M0383/22%9" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0383/22</b> - AERODROME AIRCRAFT REMAINING OVERNIGHT (RON) MUST ARRIVE NO LATER
+ THAN 30 MINUTES PRIOR TO TA CLOSURE. GAS AND GO AIRCRAFT MUST
+ ARRIVE NO LATER THAN ONE HOUR PRIOR TO TA CLOSING. TO REQUEST
+ AFTER-HOURS SUPPORT, CONTACT AMOPS AT (316) 759-3701 OR DSN
+ 743-3701. 24 MAY 21:39 2022 UNTIL 15 AUG 23:59 2022. CREATED: 24 MAY 21:37
+2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%X0395/22%10" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%X0395/22%10" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>X0395/22</b> - DUE TO POTENTIAL 5G INTERFERENCE, RADIO ALTIMETER MAY BE
+ UNUSABLE. REFER TO 5G &#150; RADIO ALTIMETER TAB ON DAIP FOR MORE
+ INFORMATION AND REPORTING INSTRUCTIONS. 13 JUL 17:18 2022 UNTIL 11 OCT 05:00
+2022. CREATED: 13 JUL 17:18 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%L0025/22%11" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%L0025/22%11" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>L0025/22</b> - AERODROME CAUTION: MAPA SPOT C6 CLOSED. 01 AUG 18:02 2022 UNTIL 08 AUG 23:59
+2022. CREATED: 01 AUG 18:02 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%L0020/22%12" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%L0020/22%12" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>L0020/22</b> - AERODROME CUSTOMS AND IMMIGRATION SERVICES NOT AVAILABLE WITHOUT
+ 96 HOUR PRIOR COORDINATION. AIRCRAFT WITHOUT PROPER COORDINATION
+ WILL BE DENIED LANDING UNLESS EMERGENCY. NO FOREIGN NATIONALS WILL
+ BE PERMITTED THROUGH KIAB. COORDINATE WITH AIRFIELD MANAGEMENT FOR
+ CUSTOMS/AG/IMMIGRATION. AIRCRAFT THAT ARE APPROVED TO LAND AT KIAB
+ FOR CUSTOMS NEED TO CONTACT COMMAND POST 3 HOURS AND 1 HOUR OUT
+ FROM LANDING TO UPDATE CUSTOMS OFFICE. ANY CHANGES OR CANCELLATIONS
+ TO APPROVED CUSTOMS SERVICES NEED TO CONTACT COMMAND POST OR
+ AIRFIELD MANAGEMENT FOR AUTHORIZATION. 30 JUN 18:30 2022 UNTIL 30 AUG 23:59
+2022. CREATED: 30 JUN 18:30 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KIAB%L0018/22%13" id="KIAB">
+												<input type=hidden name="saveall" value="KIAB%L0018/22%13" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>L0018/22</b> - AERODROME OPERATING PROCEDURES CHANGE: REQ FOR PPR TAKEN NO
+ EARLIER THAN 7 DAYS PRIOR TO PLANNED MSN. PPR'S VALID +/-1 HR SKED
+ PPR SLOT TIMES. PPR INCL SKED DV, AIREVAC, AMC AND SAM MSN DUE LTD
+ RAMP SPACE, TRAN ACFT PRK LT. CTC AMOPS DSN 743-3701,
+ C316-759-3701. INBD ACFT WITH DV CTC COMD POST 30 MIN PRIOR TO ETA
+ WITH BLOCK TIME. 29 JUN 17:20 2022 UNTIL 09 SEP 23:59 2022. CREATED: 29 JUN
+17:20 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+									</TABLE>
+								
+								
+
+								
+							
+						
+							<TABLE>
+								<TR>
+									<TD colspan="2" width="1070">
+
+									<HR>
+
+									</TD>
+								</TR>
+								<TR>
+
+									<TD nowrap class="textBlack12Bu" width="350" valign="top"><A
+										name="KMCF">
+										 KMCF&nbsp;&nbsp; MACDILL AFB</TD>
+									
+									
+									<TD ALIGN="right" id="noprint"><A href="#top"><U>[Back to Top]</U></A>
+									<br>
+									</TD>
+									
+								</TR>
+							</TABLE>
+
+							
+
+
+							
+								
+
+									<TABLE>
+
+										
+										
+										
+											<tr>
+												<td colspan="2"><!--  keep until we are sure that the customer perfers links over buttons.
+											<a href="javascript:icaoCheckAll(document.NotamRetrievalForm.KMCF, KMCF)" > Check All KMCF </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<a href="javascript:icaoUnCheckAll(document.NotamRetrievalForm.KMCF, KMCF)" > UnCheck All KMCF </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											</td> --> <input type="button"
+													style="width: 90px; font-size: 09px;" name="CheckAll"
+													value="Check All KMCF"
+													onClick="icaoCheckAll(document.NotamRetrievalForm.KMCF, KMCF ); ">
+												&nbsp; <input type="button"
+													style="width: 100px; font-size: 09px;" name="unCheckAll"
+													value="UnCheck All KMCF"
+													onClick="icaoUnCheckAll(document.NotamRetrievalForm.KMCF, KMCF ); ">
+												
+										
+												</TD>
+											</tr>
+																						
+										
+
+										
+
+
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%M0517/22%0" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%M0517/22%0" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0517/22</b> - PARKING SPOTS B-1 THRU B-16 & T-23 THRU T-25 CLSD. 06 AUG 23:45 2022 UNTIL 01
+OCT 23:59 2022. CREATED: 06 AUG 23:45 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%M0516/22%1" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%M0516/22%1" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0516/22</b> - TWY KILO CLSD BETWEEN TWY LIMA AND SOUTH APRON. 06 AUG 22:46 2022 UNTIL 01 OCT
+23:59 2022. CREATED: 06 AUG 22:46 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%M0504/22%2" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%M0504/22%2" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0504/22</b> - TOWER CONTROL NOT AVAILABLE ON EMERGENCY FREQUENCY 243.0. 31 JUL 23:55 2022 UNTIL
+31 AUG 23:59 2022. CREATED: 31 JUL 23:55 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%M0496/22%3" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%M0496/22%3" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0496/22</b> - ASF MACDILL HELIPAD WIND DIRECTION INDICATOR (WIND CONE) NOT
+ INSTALLED. 27 JUL 19:58 2022 UNTIL 11 OCT 23:59 2022. CREATED: 27 JUL 19:58
+2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%M0481/22%4" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%M0481/22%4" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0481/22</b> - NAVAID ILS RWY 05 UNMONITORED. 23 JUL 02:17 2022 UNTIL 10 AUG 23:59 2022. CREATED:
+23 JUL 02:17 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%M0480/22%5" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%M0480/22%5" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0480/22</b> - NAVAID ILS RWY 23 UNSERVICEABLE. 23 JUL 02:15 2022 UNTIL 10 AUG 23:59 2022. CREATED:
+23 JUL 02:15 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%M0457/22%6" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%M0457/22%6" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0457/22</b> - TWY P CLSD. 16 JUL 17:17 2022 UNTIL 30 AUG 23:59 2022. CREATED: 16 JUL 17:17
+2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%M0381/22%7" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%M0381/22%7" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>M0381/22</b> - DELTA RAMP (DUC) CLSD. 21 JUN 15:24 2022 UNTIL 23 AUG 23:59 2022. CREATED: 21
+JUN 15:24 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%X0298/22%8" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%X0298/22%8" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>X0298/22</b> - DUE TO POTENTIAL 5G INTERFERENCE, RADIO ALTIMETER MAY BE
+ UNUSABLE. REFER TO 5G &,150; RADIO ALTIMETER TAB ON DAIP FOR MORE
+ INFORMATION AND REPORTING INSTRUCTIONS. 13 JUL 16:40 2022 UNTIL 11 OCT 05:00
+2022. CREATED: 13 JUL 16:40 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%2/5908%9" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%2/5908%9" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/5908</b> - STAR MACDILL AFB, TAMPA, FL.
+MAATY THREE RNAV ARRIVAL..
+DEFUN TO CABLO MOCA 2500. 19 MAY 09:00 2022 UNTIL 29 DEC 09:00 2022. CREATED:
+18 MAY 16:57 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%L0052/22%10" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%L0052/22%10" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>L0052/22</b> - HELIPAD H1: 100X100 (CON) ASF MACDILL USE ONLY. 04 AUG 02:59 2022 UNTIL 08 SEP
+23:59 2022. CREATED: 04 AUG 02:59 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%L0051/22%11" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%L0051/22%11" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>L0051/22</b> - PTD INTERMITTENT. CONTACT AIRFIELD MANAGEMENT AT COMM
+ 813-828-2929 OPTION 3. 30 JUL 00:06 2022 UNTIL 31 AUG 23:59 2022. CREATED:
+30 JUL 00:06 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%L0050/22%12" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%L0050/22%12" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>L0050/22</b> - PMSV OTS. PLEASE CONTACT 6 OSS/OSW WEATHER AT (813)-828-4405 FOR
+ WEATHER INFO. 28 JUL 01:07 2022 UNTIL 01 SEP 23:59 2022. CREATED: 28 JUL 01:07
+2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KMCF%L0049/22%13" id="KMCF">
+												<input type=hidden name="saveall" value="KMCF%L0049/22%13" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>L0049/22</b> - TOW ONLY: ENGINE RUNS AND ENGINE WASH AUTHORIZED ON TWY P AND TWY
+ K EAST OF TWY P. CONTACT AMOPS FOR APPROVAL (813-828-0002. 16 JUL 17:10 2022
+UNTIL 31 AUG 23:59 2022. CREATED: 16 JUL 17:10 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+									</TABLE>
+								
+								
+
+								
+							
+						
+					 
+
+						<table>
+							<tr>
+								<td height="4">&nbsp;</td>
+							</tr>
+							<TR>
+								<TD class="textRed12"><TT>Number of NOTAMs: 28
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End of Report <br>
+								<br>
+								</TT></TD>
+							</TR>
+						</table>
+					
+					
+				<TR>
+
+					<TD bgcolor="silver"><input type="submit" name="submit" value="Display/Print Selected NOTAMs" onclick="this.form.save.value =' '; submitForm();" style="width: 162px; font-size: 10px;">
+					&nbsp;&nbsp; 
+					
+					<input type="button" name="button" value="Print all NOTAMs" onclick="loadAPDImagesForPrint('print')" style="width: 115px; font-size: 09px;">
+								&nbsp;&nbsp;
+								<!-- <input type="submit" name="button" value="Save all NOTAMs " onclick="this.form.save.value ='saveall'; submitForm();" style="width: 115px; font-size: 09px;"> -->
+								<input type="submit" name="button" value="Save all NOTAMs " onclick="submitForm('saveAsPDF');" style="width: 115px; font-size: 09px;">
+						
+						
+					&nbsp;&nbsp; <input style="width: 115px; font-size: 09px;"
+						type="button" onClick="checkedAll('form1', true)"
+						value="Check All NOTAMs"> &nbsp;&nbsp; <input
+						style="width: 115px; font-size: 09px;" type="button"
+						onClick="checkedAll('form1', false)" value="UnCheck All NOTAMs"></TD>
+				</TR>
+
+			</TABLE>
+</DIV>
+			
+</form>
+
+	
+
+
+
+<!-- START Bottom LINKS -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" bgcolor="#5487C4" class="noprint">
+      <tbody>
+      <tr align="left">
+       
+        <td align="left"><img src="images/spacer.gif" alt="" width="20" height="15"></td>
+        <td height="15" align="left" ><a href="http://www.faa.gov/privacy/" target="_blank" class="MenuBottom" title="Privacy and Website Policy"><font color="#FFFFFF">Privacy and Web site Policy</font></A></td>
+
+        <td align="left">
+<a href="#" class="MenuBottom" title="About Defense Internet NOTAM Service" onClick="aboutWindow=window.open('../about.html','aboutWindow','toolbar=yes,location=no,directories=no,status=no,menubar=yes,scrollbars=yes,resizable=yes,width=550,height=400,left=150,top=50'); return false;"><font color="#FFFFFF">About DINS</font></a></td>
+
+      
+<td align="left">
+<a href="#" class="MenuBottom" title="DINS Disclaimer" onClick="discWindow=window.open('../disclaim.html','discWindow','toolbar=yes,location=no,directories=no,status=no,menubar=yes,scrollbars=yes,resizable=yes,width=550,height=400,left=150,top=50'); return false;"><font color="#FFFFFF">DINS Disclaimer</font></a></td>
+             
+<TD  VALIGN="top"><IMG SRC="images/spacer.gif" ALT="" TITLE="" WIDTH="200" HEIGHT="15"></TD>
+ <TD  VALIGN="top"><IMG SRC="images/spacer.gif" ALT="" TITLE="" WIDTH="100" HEIGHT="15">
+  </TD>       
+          
+      </TR>
+   </tbody>   
+  </TABLE>
+	<!-- END LINKS -->
+	</BODY>
+</html>
+

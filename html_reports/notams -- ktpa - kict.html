@@ -1,0 +1,1552 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+
+<html>
+<HEAD>
+
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="IBM Software Development Platform">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK href="theme/naimes.css" rel="stylesheet" type="text/css">
+<SCRIPT language="JavaScript" src="javascript/common.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="javascript/save.js"></SCRIPT>
+
+<TITLE>Defense Internet NOTAM Service</TITLE>
+<script>
+window.focus();
+</script>
+</HEAD>
+
+
+<BODY>
+
+<A name="top"></A>
+<!-- begin of banner -->
+<TABLE width="100%" cellpadding="0" cellspacing="0" class="noprint" >
+	<TBODY>
+		<TR>
+			<TD align="left" background="images/n_gradiant_back.gif"><IMG	src="images/n_seal_af.gif" width="99" height="104" border="0"></TD>
+			<TD align="left" background="images/n_gradiant_back.gif"><IMG	src="images/n_seal_army.gif" width="99" height="104" border="0"></TD>
+			<TD align="center" background="images/n_gradiant_back.gif"><IMG	src="images/n_logo_dins.gif" width="367" height="104" border="0"></TD>
+			<TD align="center" background="images/n_gradiant_back.gif"><IMG	src="images/n_seal_navy.gif" width="99" height="104" border="0"></TD>
+			<TD align="right" background="images/n_gradiant_back.gif"><IMG src="images/n_seal_marines.gif" width="99" height="104" border="0"></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<TABLE border="0" cellpadding="0" cellspacing="0" bgcolor="white" 
+	width="100%" class="noprint">
+
+
+	<TBODY>
+		<TR bgcolor="black">
+		
+			<TD width="33%" align="left" nowrap >
+			<FONT color="white" size="1">
+			<IMG	border="0" src="images/spacer.gif" width="10" height="11"> 
+			<span	id="DINSClock"></span></FONT></TD>
+
+<td><IMG	border="0" src="images/spacer.gif" width="10" > </td>
+			<TD width="33%"  class="dodWarningRed11" align="center"  bgcolor="black" nowrap>
+						~ For DoD Flight Only ~
+			</TD>
+
+			<TD width="33%"  align="right"  id="MenuTop" nowrap >
+			<FONT	 color="#000000">xxxxxxxxx</FONT> 
+			<A	href="#" class="MenuTop" title="Close" onclick="window.close()"> 
+			<FONT	color="#FFFFFF">Close</FONT></A>
+         <FONT	 color="#000000">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</FONT> 
+		
+		
+				</TD>
+
+	</TBODY>
+</TABLE>
+
+<!-- end of menu line one -->
+<!-- end of banner -->
+<!-- end of menu line one -->
+
+<!-- END LINKS -->
+
+<style media="print">
+#noprint {
+	display: none;
+}
+input, button {
+	display: none;
+}
+.noprint {
+	display: none;
+}
+.toggle {
+	display: block;
+}
+text {
+display: block;
+}
+</style>
+
+<style media="screen">
+#noshow {
+	display: none;
+}
+.noshow {
+	display: none;
+}
+</style>
+
+<form name="NotamRetrievalForm" method="post" action="/dinsQueryWeb/printRetrievalMapAction.do" id="form1">
+
+<input type=hidden name="locidStr"  value="KICT KTPA"  />
+<input type=hidden name="save"  value="" />	
+
+
+
+
+
+
+<script>
+function submitForm(action) {
+	var oldAction = "printRetrievalMapAction.do";
+	if (action == "saveAsPDF") {
+		document.NotamRetrievalForm.action = 'saveNotamAsPDF?sel=false&geo=false';
+		}
+	else {
+		document.NotamRetrievalForm.action = oldAction;
+	}
+}
+</script>
+
+<DIV align="left">
+			<TABLE width="100%" cellpadding="5">
+				<TR>
+					<TD>
+					<TABLE>
+
+						<TR>
+							<TD><input type="submit" name="submit" value="Display/Print Selected NOTAMs" onclick="this.form.save.value =' '; submitForm();" style="width: 162px; font-size: 10px;"></TD>
+
+						</TR>
+
+						<TR>
+							<TD>
+								<input type="button" name="button" value="Print all NOTAMs" onclick="loadAPDImagesForPrint('print');" style="width: 115px; font-size: 09px;">
+								&nbsp;&nbsp;
+								<!-- <input type="submit" name="button" value="Save all NOTAMs " onclick="this.form.save.value ='saveall';submitForm();" style="width: 115px; font-size: 09px;"> -->
+								<input type="submit" name="button" value="Save all NOTAMs " onclick="submitForm('saveAsPDF');" style="width: 115px; font-size: 09px;">
+							</TD>
+
+
+							<td class="textBlack14" width="25%" align="right" >Sort By: <select name="sortOrder"><!--  onchange="sortNotamListing(this.value); "-->
+								
+								<option value="1" selected="selected">Default Report</option>
+								<option value="2">Effective Date</option>
+								<option value="3">Expiration Date</option>
+								<option value="4">Created Date</option></select>
+							
+							</td>							
+						</TR>
+					<tr>
+					<td class="toggle"> </td>
+					</tr>
+						<TR >
+						<TD ><input style="width: 115px; font-size: 09px;" type="button" onClick="checkedAll('form1', true)" value="Check All NOTAMs">
+							&nbsp;&nbsp;
+							<input style="width: 115px; font-size: 09px;" type="button" onClick="checkedAll('form1', false)" value="UnCheck All NOTAMs">
+						</TD>	
+						<td nowrap="nowrap" class="textBlack14" width="25%" align="right" >
+							Keyword Sort: <input type="text" name="sortKeyword" maxlength="20" size="15" value="" style="display:inline">						
+							<input  type="button" onClick="sortNotamListing(document.NotamRetrievalForm.sortOrder.value,document.NotamRetrievalForm.sortKeyword.value);" value="Go">
+							
+						</td>					
+						</TR>
+
+						
+							
+	
+
+
+						<TR>
+							<TD height="3" class="textRed12" align="center">
+						
+							
+							
+							</TD>
+						</TR>
+
+						<TR>
+							<TD nowrap="nowrap" class="textBlack16Bold">Locations:</TD>							
+						</TR>
+						<TR>
+							<TD WIDTH=800 class="textBlack12Bold">
+
+							  <A HREF='#KICT' class='A1'>KICT,</A> &nbsp;  <A HREF='#KTPA' class='A1'>KTPA</A> &nbsp; </TD>
+						</TR>
+						<TR>
+							<TD colspan="2">
+							<HR>
+							</TD>
+						</TR>
+
+						<TR>
+							<TD class="textBlack14"><tt>Data Current as of: &nbsp; <span
+								class="textRed12">Sat, 06 Aug 2022 17:09:00 GMT</span></tt></TD>
+						</TR>
+
+
+					</TABLE>
+					 
+					
+						
+							<TABLE>
+								<TR>
+									<TD colspan="2" width="1070">
+
+									<HR>
+
+									</TD>
+								</TR>
+								<TR>
+
+									<TD nowrap class="textBlack12Bu" width="350" valign="top"><A
+										name="KICT">
+										 KICT&nbsp;&nbsp; WICHITA DWIGHT D EISENHOWER NTL</TD>
+									
+									
+									<TD ALIGN="right" id="noprint"><A href="#top"><U>[Back to Top]</U></A>
+									<br>
+									</TD>
+									
+								</TR>
+							</TABLE>
+
+							
+
+
+							
+								
+
+									<TABLE>
+
+										
+										
+										
+											<tr>
+												<td colspan="2"><!--  keep until we are sure that the customer perfers links over buttons.
+											<a href="javascript:icaoCheckAll(document.NotamRetrievalForm.KICT, KICT)" > Check All KICT </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<a href="javascript:icaoUnCheckAll(document.NotamRetrievalForm.KICT, KICT)" > UnCheck All KICT </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											</td> --> <input type="button"
+													style="width: 90px; font-size: 09px;" name="CheckAll"
+													value="Check All KICT"
+													onClick="icaoCheckAll(document.NotamRetrievalForm.KICT, KICT ); ">
+												&nbsp; <input type="button"
+													style="width: 100px; font-size: 09px;" name="unCheckAll"
+													value="UnCheck All KICT"
+													onClick="icaoUnCheckAll(document.NotamRetrievalForm.KICT, KICT ); ">
+												
+										
+												</TD>
+											</tr>
+																						
+										
+
+										
+
+
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%08/077%0" id="KICT">
+												<input type=hidden name="saveall" value="KICT%08/077%0" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/077</b> (A1569/22) - RWY 01L/19R CLSD EXC PLA. 10 AUG 12:30 2022 UNTIL 10 AUG 16:30 2022. CREATED:
+05 AUG 19:36 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%08/026%1" id="KICT">
+												<input type=hidden name="saveall" value="KICT%08/026%1" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/026</b> (A1542/22) - TWY A5 BTN GA RAMP AND TWY A CLSD. 03 AUG 12:13 2022 UNTIL 15 AUG 23:59 2022.
+CREATED: 03 AUG 12:13 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%08/007%2" id="KICT">
+												<input type=hidden name="saveall" value="KICT%08/007%2" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/007</b> (A1537/22) - TWY A3 CLSD. 01 AUG 13:44 2022 UNTIL 15 AUG 23:59 2022. CREATED: 01 AUG 13:45
+2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%08/006%3" id="KICT">
+												<input type=hidden name="saveall" value="KICT%08/006%3" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/006</b> (A1538/22) - TWY A7 BTN GA RAMP AND TWY A CLSD. 01 AUG 13:44 2022 UNTIL 15 AUG 23:59 2022.
+CREATED: 01 AUG 13:44 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%07/518%4" id="KICT">
+												<input type=hidden name="saveall" value="KICT%07/518%4" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>07/518</b> - NAV VOR 025-035 SFC-4000FT UNUSABLE. SFC - 4000FT, 28 JUL 05:12 2022 UNTIL 31
+JAN 23:59 2023 ESTIMATED. CREATED: 28 JUL 05:13 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%07/476%5" id="KICT">
+												<input type=hidden name="saveall" value="KICT%07/476%5" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>07/476</b> - OBST TOWER LGT (ASR 1026741) 374640.00N0973038.00W (8.5NM NNW ICT) 2530.2FT (1162.1FT
+AGL) U/S. 25 JUL 14:02 2022 UNTIL 31 DEC 23:59 2022. CREATED: 25 JUL 14:02 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%07/186%6" id="KICT">
+												<input type=hidden name="saveall" value="KICT%07/186%6" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>07/186</b> (A1444/22) - TWY A BTN TWY A1 AND TWY A8 CLSD TO ACFT WINGSPAN MORE THAN 118FT. 11 JUL 15:38
+2022 UNTIL 30 NOV 23:59 2023. CREATED: 11 JUL 15:38 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%07/142%7" id="KICT">
+												<input type=hidden name="saveall" value="KICT%07/142%7" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>07/142</b> - OBST TOWER LGT (ASR 1217036) 374800.70N0973130.20W (10.0NM NNW ICT) 2548.9FT
+(1169.0FT AGL) U/S. 08 JUL 15:02 2022 UNTIL 22 AUG 15:01 2022. CREATED: 08 JUL
+15:02 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%06/309%8" id="KICT">
+												<input type=hidden name="saveall" value="KICT%06/309%8" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>06/309</b> - TWY C CL MARKINGS BTN RWY 01L/19R AND TWY C4 NOT STD. 14 JUN 19:43 2022 UNTIL
+31 OCT 23:59 2022. CREATED: 14 JUN 19:43 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/518%9" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/518%9" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/518</b> (A1212/22) - APRON AIR CARGO RAMP CLSD TO ACFT WINGSPAN MORE THAN 148FT. 31 MAY 11:51 2022
+UNTIL 31 OCT 23:59 2022. CREATED: 31 MAY 11:50 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/461%10" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/461%10" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/461</b> - TWY B TWY DIRECTION SIGN BTN RWY 01L/19R AND TWY D NOT STD. 27 MAY 15:23 2022
+UNTIL 31 OCT 23:59 2022. CREATED: 27 MAY 15:21 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/437%11" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/437%11" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/437</b> - TWY K1 LOCATION SIGN BTN TWY K AND RWY 14/32 NOT STD. 26 MAY 18:06 2022 UNTIL
+31 OCT 23:59 2022. CREATED: 26 MAY 18:04 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/436%12" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/436%12" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/436</b> - TWY D TWY DIRECTION SIGN BTN TWY C AND TWY D3 NOT STD. 26 MAY 18:03 2022 UNTIL
+31 OCT 23:59 2022. CREATED: 26 MAY 18:01 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/435%13" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/435%13" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/435</b> - TWY D TWY DIRECTION SIGN BTN TWY C AND TWY K NOT STD. 26 MAY 18:02 2022 UNTIL
+31 OCT 23:59 2022. CREATED: 26 MAY 18:00 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/423%14" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/423%14" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/423</b> - TWY A8 CL MARKINGS NOT STD. 25 MAY 19:16 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 19:14 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/422%15" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/422%15" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/422</b> - TWY A1 CL MARKINGS NOT STD. 25 MAY 19:15 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 19:13 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/421%16" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/421%16" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/421</b> - TWY E1 HLDG PSN MARKINGS AT RWY 14/32 NOT STD. 25 MAY 19:12 2022 UNTIL 31 OCT
+23:59 2022. CREATED: 25 MAY 19:10 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/420%17" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/420%17" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/420</b> - TWY A1 HLDG PSN MARKINGS AT RWY 01R/19L NOT STD. 25 MAY 19:11 2022 UNTIL 31 OCT
+23:59 2022. CREATED: 25 MAY 19:09 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/418%18" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/418%18" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/418</b> - TWY N CL MARKINGS NOT STD. 25 MAY 19:08 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 19:06 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/417%19" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/417%19" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/417</b> - TWY M EDGE MARKINGS NOT STD. 25 MAY 19:07 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 19:05 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/416%20" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/416%20" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/416</b> - TWY M7 CL MARKINGS NOT STD. 25 MAY 19:06 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 19:04 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/415%21" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/415%21" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/415</b> - TWY M6 CL MARKINGS NOT STD. 25 MAY 19:06 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 19:04 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/414%22" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/414%22" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/414</b> - TWY M5 CL MARKINGS NOT STD. 25 MAY 19:05 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 19:03 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/413%23" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/413%23" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/413</b> - TWY M2 CL MARKINGS NOT STD. 25 MAY 19:04 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 19:02 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/412%24" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/412%24" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/412</b> - TWY M1 CL MARKINGS NOT STD. 25 MAY 19:04 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 19:02 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/411%25" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/411%25" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/411</b> - TWY M CL MARKINGS NOT STD. 25 MAY 19:03 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 19:01 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/408%26" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/408%26" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/408</b> - TWY E3 CL MARKINGS NOT STD. 25 MAY 18:58 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 18:56 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/405%27" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/405%27" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/405</b> - TWY K1 HLDG PSN MARKINGS AT RWY 14/32 NOT STD. 25 MAY 18:51 2022 UNTIL 31 OCT
+23:59 2022. CREATED: 25 MAY 18:49 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/404%28" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/404%28" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/404</b> - RWY 14/32 SFC MARKINGS NOT STD. 25 MAY 18:50 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 18:48 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/402%29" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/402%29" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/402</b> - TWY C4 CL MARKINGS NOT STD. 25 MAY 18:42 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 18:40 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/401%30" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/401%30" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/401</b> - TWY L1 CL MARKINGS NOT STD. 25 MAY 18:40 2022 UNTIL 31 OCT 23:59 2022. CREATED:
+25 MAY 18:38 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%05/399%31" id="KICT">
+												<input type=hidden name="saveall" value="KICT%05/399%31" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/399</b> - TWY B HLDG PSN MARKINGS AT RWY 14/32 NOT STD. 25 MAY 18:36 2022 UNTIL 31 OCT
+23:59 2022. CREATED: 25 MAY 18:34 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%04/316%32" id="KICT">
+												<input type=hidden name="saveall" value="KICT%04/316%32" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>04/316</b> (A1038/22) - AD AP RDO ALTIMETER UNREL. AUTOLAND, HUD TO TOUCHDOWN, ENHANCED FLT VISION SYSTEMS
+TO TOUCHDOWN, HEL OPS REQUIRING RDO ALTIMETER DATA TO INCLUDE HOVER AUTOPILOT
+MODES AND CAT A/B/PERFORMANCE CLASS TKOF AND LDG NOT AUTHORIZED EXC FOR ACFT
+USING APPROVED ALTERNATIVE METHODS OF COMPLIANCE DUE TO 5G C-BAND INTERFERENCE
+PLUS SEE AIRWORTHINESS DIRECTIVES 2021-23-12, 2021-23-13. 30 APR 04:01 2022 UNTIL
+30 APR 04:01 2024. CREATED: 23 APR 11:58 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%04/132%33" id="KICT">
+												<input type=hidden name="saveall" value="KICT%04/132%33" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>04/132</b> (A0995/22) - AD AP ALL SFC WIP GRASS CUTTING MON-FRI 1330-2130. 11 APR 13:30 2022 UNTIL 14
+OCT 21:30 2022. CREATED: 11 APR 13:21 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%04/131%34" id="KICT">
+												<input type=hidden name="saveall" value="KICT%04/131%34" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>04/131</b> (A0994/22) - AD AP ALL SFC WIP SFC PAINTING MON-FRI 1330-2130. 11 APR 13:30 2022 UNTIL 14
+OCT 21:30 2022. CREATED: 11 APR 13:19 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%2/9569%35" id="KICT">
+												<input type=hidden name="saveall" value="KICT%2/9569%35" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/9569</b> (A1524/22) - IAP WICHITA DWIGHT D EISENHOWER NTL,
+WICHITA, KS.
+RNAV (GPS) Y RWY 14, AMDT 2B...
+LNAV MDA 1720/HAT 387 ALL CATS. VIS CATS C/D 1 1/8.
+TOWER, 1458 MSL, 1.41.NM NORTH OF APCH END RWY 14 (2022-ACE-3563-OE
+PERMANENT). 27 JUL 16:23 2022 UNTIL 27 JUL 16:23 2024 ESTIMATED. CREATED: 27
+JUL 16:23 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%2/2238%36" id="KICT">
+												<input type=hidden name="saveall" value="KICT%2/2238%36" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/2238</b> (A1037/22) - IAP WICHITA DWIGHT D EISENHOWER NTL,
+WICHITA, KS.
+ILS RWY 01L (SA CAT I), AMDT 3D ...
+ILS RWY 01L (CAT II), AMDT 3D ...
+PROCEDURE NA EXC FOR ACFT USING APPROVED ALTERNATIVE METHODS OF
+COMPLIANCE DUE TO 5G C-BAND INTERFERENCE PLUS SEE AIRWORTHINESS
+DIRECTIVES 2021-23-12, 2021-23-13. 30 APR 04:01 2022 UNTIL 30 APR 11:59 2024
+ESTIMATED. CREATED: 23 APR 12:01 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%2/7645%37" id="KICT">
+												<input type=hidden name="saveall" value="KICT%2/7645%37" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/7645</b> (A0754/22) - IAP WICHITA DWIGHT D EISENHOWER NTL,
+WICHITA, KS.
+RNAV (RNP) Z RWY 19L, AMDT 1A...
+RNP 0.11 DA 1656/HAT 336 ALL CATS.
+FOR INOPERATIVE MALSR, INCREASE RNP 0.11 ALL CATS VISIBILITY TO 1
+SM. 24 FEB 15:44 2022 UNTIL 24 FEB 15:42 2024 ESTIMATED. CREATED: 24 FEB 15:44
+2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KICT%1/5330%38" id="KICT">
+												<input type=hidden name="saveall" value="KICT%1/5330%38" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 1/5330</b> (A3006/21) - IAP WICHITA DWIGHT D EISENHOWER NTL,
+WICHITA, KS.
+ILS OR LOC RWY 1R, AMDT 17E...
+DME REQUIRED EXCEPT FOR ACFT EQUIPPED WITH SUITABLE RNAV SYSTEM
+WITH GPS. WICHITA (ICT) VORTAC R-154 UNUSABLE. 30 DEC 12:13 2021 UNTIL 29 DEC
+12:12 2023 ESTIMATED. CREATED: 30 DEC 12:14 2021
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+									</TABLE>
+								
+								
+
+								
+							
+						
+							<TABLE>
+								<TR>
+									<TD colspan="2" width="1070">
+
+									<HR>
+
+									</TD>
+								</TR>
+								<TR>
+
+									<TD nowrap class="textBlack12Bu" width="350" valign="top"><A
+										name="KTPA">
+										 KTPA&nbsp;&nbsp; TAMPA INTL</TD>
+									
+									
+									<TD ALIGN="right" id="noprint"><A href="#top"><U>[Back to Top]</U></A>
+									<br>
+									</TD>
+									
+								</TR>
+							</TABLE>
+
+							
+
+
+							
+								
+
+									<TABLE>
+
+										
+										
+										
+											<tr>
+												<td colspan="2"><!--  keep until we are sure that the customer perfers links over buttons.
+											<a href="javascript:icaoCheckAll(document.NotamRetrievalForm.KTPA, KTPA)" > Check All KTPA </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<a href="javascript:icaoUnCheckAll(document.NotamRetrievalForm.KTPA, KTPA)" > UnCheck All KTPA </a>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											</td> --> <input type="button"
+													style="width: 90px; font-size: 09px;" name="CheckAll"
+													value="Check All KTPA"
+													onClick="icaoCheckAll(document.NotamRetrievalForm.KTPA, KTPA ); ">
+												&nbsp; <input type="button"
+													style="width: 100px; font-size: 09px;" name="unCheckAll"
+													value="UnCheck All KTPA"
+													onClick="icaoUnCheckAll(document.NotamRetrievalForm.KTPA, KTPA ); ">
+												
+										
+												</TD>
+											</tr>
+																						
+										
+
+										
+
+
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%08/047%0" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%08/047%0" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/047</b> (A2350/22) - RWY 19R RAI LGT U/S. 06 AUG 14:15 2022 UNTIL 06 JAN 20:00 2023 ESTIMATED. CREATED:
+06 AUG 14:15 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%08/035%1" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%08/035%1" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/035</b> (A2329/22) - NAV ILS RWY 19L CAT II NA. 11 AUG 12:00 2022 UNTIL 11 AUG 18:00 2022. CREATED:
+04 AUG 21:53 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%08/034%2" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%08/034%2" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/034</b> (A2328/22) - NAV ILS RWY 01L CAT II/III NA. 11 AUG 12:00 2022 UNTIL 11 AUG 18:00 2022. CREATED:
+04 AUG 21:53 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%08/033%3" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%08/033%3" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/033</b> (A2330/22) - AD AP RVR ALL U/S. 11 AUG 12:00 2022 UNTIL 11 AUG 18:00 2022. CREATED: 04 AUG
+21:52 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%08/032%4" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%08/032%4" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/032</b> (A2324/22) - RWY 01R/19L CLSD. 10 AUG 11:00 2022 UNTIL 10 AUG 18:00 2022. CREATED: 04 AUG
+18:46 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%08/031%5" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%08/031%5" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/031</b> (A2325/22) - TWY E BTN APCH END RWY 19L AND AIRBORNE NORTH RAMP CLSD. 10 AUG 11:00 2022 UNTIL
+10 AUG 18:00 2022. CREATED: 04 AUG 18:45 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%08/030%6" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%08/030%6" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/030</b> (A2323/22) - RWY 10/28 CLSD. 10 AUG 11:30 2022 UNTIL 10 AUG 18:00 2022. CREATED: 04 AUG 18:42
+2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%08/029%7" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%08/029%7" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/029</b> (A2322/22) - TWY N4, TWY N BTN TWY L AND TWY N4 CLSD. 10 AUG 11:30 2022 UNTIL 10 AUG 18:00
+2022. CREATED: 04 AUG 18:40 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%08/025%8" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%08/025%8" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/025</b> (A2314/22) - OBST CRANE (ASN UNKNOWN) 275808N0823354W (1.74NM W TPA) 
+ 329FT (319FT AGL) FLAGGED AND LGTD DLY 1200-2100. 09 AUG 12:00 2022 UNTIL 11
+AUG 21:00 2022. CREATED: 04 AUG 00:31 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%08/013%9" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%08/013%9" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/013</b> (A2293/22) - RWY 01R RWY END ID LGT NOT STD. 03 AUG 05:55 2022 UNTIL 31 AUG 22:00 2022. CREATED:
+03 AUG 05:55 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%08/011%10" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%08/011%10" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>08/011</b> - OBST TOWER LGT (ASR 1056770) 275944.80N0823322.30W (1.7NM NW TPA) 178.8FT (169.9FT
+AGL) U/S. 02 AUG 22:48 2022 UNTIL 17 AUG 04:00 2022. CREATED: 02 AUG 22:48 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%07/127%11" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%07/127%11" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>07/127</b> - OBST TOWER LGT (ASR 1046092) 280108.00N0823631.00W (4.7NM WNW TPA) 473.8FT (465.9FT
+AGL) U/S. 15 JUL 02:23 2022 UNTIL 29 AUG 02:15 2022. CREATED: 15 JUL 02:23 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%06/221%12" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%06/221%12" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>06/221</b> - RWY 01L LEAD ON CL MARKING, LEAD OFF CL MARKING, TDZ CL MARKING OBSC. 27 JUN
+18:03 2022 UNTIL 30 AUG 04:00 2022. CREATED: 27 JUN 18:04 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%06/130%13" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%06/130%13" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>06/130</b> (A1635/22) - OBST CRANE (ASN UNKNOWN) 275636N0823217W (1.94NM S TPA) 
+ 163FT (152FT AGL) FLAGGED AND LGTD. 15 JUN 10:00 2022 UNTIL 28 OCT 22:30 2023.
+CREATED: 13 JUN 20:09 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%06/083%14" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%06/083%14" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>06/083</b> (A1554/22) - NAV ILS RWY 01L CAT II/III NA. 09 JUN 20:31 2022 UNTIL 09 DEC 21:00 2022 ESTIMATED.
+CREATED: 09 JUN 20:31 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%05/160%15" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%05/160%15" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/160</b> (A1404/22) - OBST CRANE (ASN 2020-ASO-945-NRA) 275804N0823054W (1.1NM ESE TPA) 106FT (80FT
+AGL) FLAGGED AND LGTD. 02 JUN 11:00 2022 UNTIL 07 OCT 22:00 2022. CREATED: 27
+MAY 17:50 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%05/115%16" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%05/115%16" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/115</b> (A1333/22) - APRON TXL Q CLSD. 20 MAY 18:05 2022 UNTIL PERM. CREATED: 20 MAY 18:04 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%05/016%17" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%05/016%17" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/016</b> (A1200/22) - APRON TXL U 200FT E OF TWY B2 CLSD. 03 MAY 03:10 2022 UNTIL 01 JAN 22:00 2023.
+CREATED: 03 MAY 03:10 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%05/015%18" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%05/015%18" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/015</b> (A1197/22) - TWY N1 CLSD TO ACFT WINGSPAN MORE THAN 171FT. 02 MAY 18:28 2022 UNTIL 31 AUG
+21:00 2022. CREATED: 02 MAY 18:28 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%05/013%19" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%05/013%19" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/013</b> (A1194/22) - TWY S1 BTN APCH END RWY 28 AND TWY S WIP HVY EQPT SOUTH SIDE. 02 MAY 16:48 2022
+UNTIL 31 MAR 23:59 2023. CREATED: 02 MAY 16:47 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%05/012%20" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%05/012%20" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>05/012</b> (A1193/22) - TWY S BTN TWY R1 AND TWY S1 WIP CONST SOUTH SIDE. 02 MAY 16:48 2022 UNTIL 31
+MAR 23:59 2023. CREATED: 02 MAY 16:46 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%01/069%21" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%01/069%21" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>01/069</b> (A0079/22) - AD AP RDO ALTIMETER UNREL. AUTOLAND, HUD TO TOUCHDOWN, ENHANCED FLT VISION SYSTEMS
+TO TOUCHDOWN, HEL OPS REQUIRING RDO ALTIMETER DATA TO INCLUDE HOVER AUTOPILOT
+MODES AND CAT A/B/PERFORMANCE CLASS TKOF AND LDG NOT AUTHORIZED EXC FOR ACFT
+USING APPROVED ALTERNATIVE METHODS OF COMPLIANCE DUE TO 5G C-BAND INTERFERENCE
+PLUS SEE AIRWORTHINESS DIRECTIVES 2021-23-12, 2021-23-13. 19 JAN 05:01 2022 UNTIL
+19 JAN 05:01 2024. CREATED: 13 JAN 09:53 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%12/190%22" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%12/190%22" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>12/190</b> (A5714/21) - NAV ILS RWY 19L COSME LOM U/S. 29 DEC 11:03 2021 UNTIL 23 DEC 20:00 2022 ESTIMATED.
+CREATED: 29 DEC 11:03 2021
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%12/189%23" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%12/189%23" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>12/189</b> (A5713/21) - NAV ILS RWY 19L OM U/S. 29 DEC 11:03 2021 UNTIL 23 DEC 20:00 2022 ESTIMATED.
+CREATED: 29 DEC 11:03 2021
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%12/179%24" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%12/179%24" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>12/179</b> (A5699/21) - OBST CRANE (ASN UNKNOWN) 275926N0823350W (1.86NM NW TPA) 
+ 210FT (200FT AGL) FLAGGED AND LGTD DLY 1100-2200. 23 DEC 11:00 2021 UNTIL 02
+SEP 22:00 2022. CREATED: 22 DEC 15:04 2021
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%12/153%25" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%12/153%25" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>12/153</b> (A5663/21) - APRON TXL Q EDGE LGT U/S. 20 DEC 12:00 2021 UNTIL PERM. CREATED: 17 DEC 13:08
+2021
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%2/5156%26" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%2/5156%26" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/5156</b> (A2100/22) - IAP TAMPA INTL, TAMPA, FL.
+LOC RWY 1R, AMDT 4B...
+ALTERNATE MINIMUMS NA EXCEPT FOR ACFT EQUIPPED WITH SUITABLE RNAV
+SYSTEM WITH GPS,
+LAL VORTAC UNMONITORED. 19 JUL 05:52 2022 UNTIL 19 AUG 05:52 2022 ESTIMATED.
+CREATED: 19 JUL 05:53 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%2/4894%27" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%2/4894%27" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/4894</b> (A1502/22) - IAP TAMPA INTL, TAMPA, FL.
+ILS OR LOC RWY 19L, AMDT 40E...
+ILS OR LOC RWY 19R, AMDT 6...
+ILS OR LOC RWY 1L, AMDT 18...
+LOC RWY 1R, AMDT 4B...
+RNAV (GPS) RWY 10, AMDT 2A...
+RNAV (GPS) RWY 19R, AMDT 2D...
+RNAV (GPS) RWY 1L, AMDT 2D...
+RNAV (GPS) RWY 1R, AMDT 3A...
+RNAV (GPS) RWY 28, AMDT 1C...
+RNAV (GPS) Z RWY 19L, AMDT 2F...
+CIRCLING CATS A/B MDA 660/HAA 634. TEMPORARY CRANE 310FT MSL 8161FT
+NORTHEAST OF RWY 28 (2021-ASO-41158-OE). 06 JUN 17:39 2022 UNTIL 13 AUG 17:39
+2022 ESTIMATED. CREATED: 06 JUN 17:40 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%2/5926%28" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%2/5926%28" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/5926</b> (A1293/22) - SID TAMPA INTL, TAMPA, FL.
+DORMR TWO DEPARTURE (RNAV) ...
+CHANGE TAKEOFF MINIMUMS TO READ: RWY 10, STANDARD WITH MINIMUM
+CLIMB OF 243 FT PER NM TO 800. RWY 19L, 200-1 1/2 OR STANDARD WITH
+MINIMUM CLIMB OF 220 FT PER NM TO 300. ALL OTHER DATA REMAINS AS
+PUBLISHED. 19 MAY 09:01 2022 UNTIL 28 DEC 17:29 2022 ESTIMATED. CREATED: 18
+MAY 17:29 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%2/5906%29" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%2/5906%29" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/5906</b> (A1292/22) - STAR TAMPA INTL, TAMPA, FL.
+MAATY THREE RNAV ARRIVAL..DEFUN TO CABLO MOCA 2500. 19 MAY 09:00 2022 UNTIL
+29 DEC 09:00 2022. CREATED: 18 MAY 16:57 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%2/5905%30" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%2/5905%30" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/5905</b> (A1291/22) - STAR TAMPA INTL, TAMPA, FL.
+DADES NINE RNAV ARRIVAL..
+CHART AT JSTRM TERMINUS KTPA LDG RWY
+1L/R,28. CHART AT JKBAL TERMINUS KTPA LDG RWY 19L/R, 10. 19 MAY 09:00 2022 UNTIL
+29 DEC 09:00 2022. CREATED: 18 MAY 16:57 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%2/3778%31" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%2/3778%31" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 2/3778</b> (A0075/22) - IAP TAMPA INTL, TAMPA, FL.
+ILS RWY 01L (SA CAT I), AMDT 18 ...
+ILS RWY 19L (SA CAT I), AMDT 40E ...
+ILS RWY 19L (CAT II), AMDT 40E ...
+ILS RWY 01L (CAT II - III), AMDT 18 ...
+PROCEDURE NA EXC FOR ACFT USING APPROVED ALTERNATIVE METHODS OF
+COMPLIANCE DUE TO 5G C-BAND INTERFERENCE PLUS SEE AIRWORTHINESS
+DIRECTIVES 2021-23-12, 2021-23-13. 19 JAN 05:00 2022 UNTIL 19 JAN 05:06 2024
+ESTIMATED. CREATED: 13 JAN 05:07 2022
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+											<TR>
+
+												<TD width="12" class="textBlack12" valign="top">
+												<input type="checkbox" name="notamSelect" value="KTPA%1/5393%32" id="KTPA">
+												<input type=hidden name="saveall" value="KTPA%1/5393%32" />
+												</td>
+
+												<TD class="textBlack12" valign="top"><PRE><b>FDC 1/5393</b> (A2602/21) - IAP TAMPA INTL, TAMPA, FL.
+LOC RWY 1R, AMDT 4B ...
+DME REQUIRED EXCEPT FOR ACFT EQUIPPED WITH SUITABLE RNAV SYSTEM
+WITH GPS. 17 JUN 12:01 2021 UNTIL 18 JUN 12:01 2023 ESTIMATED. CREATED: 17 JUN
+12:02 2021
+</PRE></TD>
+
+											</TR> 
+											
+										
+
+									</TABLE>
+								
+								
+
+								
+							
+						
+					 
+
+						<table>
+							<tr>
+								<td height="4">&nbsp;</td>
+							</tr>
+							<TR>
+								<TD class="textRed12"><TT>Number of NOTAMs: 72
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End of Report <br>
+								<br>
+								</TT></TD>
+							</TR>
+						</table>
+					
+					
+				<TR>
+
+					<TD bgcolor="silver"><input type="submit" name="submit" value="Display/Print Selected NOTAMs" onclick="this.form.save.value =' '; submitForm();" style="width: 162px; font-size: 10px;">
+					&nbsp;&nbsp; 
+					
+					<input type="button" name="button" value="Print all NOTAMs" onclick="loadAPDImagesForPrint('print')" style="width: 115px; font-size: 09px;">
+								&nbsp;&nbsp;
+								<!-- <input type="submit" name="button" value="Save all NOTAMs " onclick="this.form.save.value ='saveall'; submitForm();" style="width: 115px; font-size: 09px;"> -->
+								<input type="submit" name="button" value="Save all NOTAMs " onclick="submitForm('saveAsPDF');" style="width: 115px; font-size: 09px;">
+						
+						
+					&nbsp;&nbsp; <input style="width: 115px; font-size: 09px;"
+						type="button" onClick="checkedAll('form1', true)"
+						value="Check All NOTAMs"> &nbsp;&nbsp; <input
+						style="width: 115px; font-size: 09px;" type="button"
+						onClick="checkedAll('form1', false)" value="UnCheck All NOTAMs"></TD>
+				</TR>
+
+			</TABLE>
+</DIV>
+			
+</form>
+
+	
+
+
+
+<!-- START Bottom LINKS -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" bgcolor="#5487C4" class="noprint">
+      <tbody>
+      <tr align="left">
+       
+        <td align="left"><img src="images/spacer.gif" alt="" width="20" height="15"></td>
+        <td height="15" align="left" ><a href="http://www.faa.gov/privacy/" target="_blank" class="MenuBottom" title="Privacy and Website Policy"><font color="#FFFFFF">Privacy and Web site Policy</font></A></td>
+
+        <td align="left">
+<a href="#" class="MenuBottom" title="About Defense Internet NOTAM Service" onClick="aboutWindow=window.open('../about.html','aboutWindow','toolbar=yes,location=no,directories=no,status=no,menubar=yes,scrollbars=yes,resizable=yes,width=550,height=400,left=150,top=50'); return false;"><font color="#FFFFFF">About DINS</font></a></td>
+
+      
+<td align="left">
+<a href="#" class="MenuBottom" title="DINS Disclaimer" onClick="discWindow=window.open('../disclaim.html','discWindow','toolbar=yes,location=no,directories=no,status=no,menubar=yes,scrollbars=yes,resizable=yes,width=550,height=400,left=150,top=50'); return false;"><font color="#FFFFFF">DINS Disclaimer</font></a></td>
+             
+<TD  VALIGN="top"><IMG SRC="images/spacer.gif" ALT="" TITLE="" WIDTH="200" HEIGHT="15"></TD>
+ <TD  VALIGN="top"><IMG SRC="images/spacer.gif" ALT="" TITLE="" WIDTH="100" HEIGHT="15">
+  </TD>       
+          
+      </TR>
+   </tbody>   
+  </TABLE>
+	<!-- END LINKS -->
+	</BODY>
+</html>
+
